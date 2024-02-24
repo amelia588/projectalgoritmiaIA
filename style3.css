@@ -32,22 +32,17 @@ body,html {
     justify-self: center;
     display: none;
 }
-.title {
-    font-size: var(--lg);
-    margin-bottom: 12px;
-    text-align: center;
-}
-.subtitle {
-      color: var(--very-light-pink);
-      font-size: var(--md);
-      font-weight: 300;
-      margin-top: 0;
-      margin-bottom: 32px;
-      text-align: center;
-    }
     .form {
       display: flex;
       flex-direction: column;
+    }
+    .form a {
+        color: var(--hospital-green #acd982);
+        font-size: var(--sm);
+        text-align: center;
+        text-decoration: none;
+        margin-bottom: 52px;
+
     }
     .label {
       font-size: var(--sm);
@@ -62,6 +57,9 @@ body,html {
       font-size: var(--md);
       padding: 6px;
       margin-bottom: 12px;
+    }
+    .input-email{
+        margin-bottom: 22px;
     }
     .primary-button {
       background-color: var(--hospital-green);
