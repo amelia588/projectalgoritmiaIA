@@ -12,5 +12,45 @@
 body,html {
     margin: 0;
     font-family: 'Quicksand', sans-serif;
+
     
+}
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,240px);
+    gap: 26px;
+}
+.product_card {
+    width: 240px;
+}
+.product_card img {
+    width: 240px;
+    height: 240px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+.product_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.product_info figure {
+    margin: 0;
+}
+.product_info figure img {
+    width: 35px;
+    height: 35px;
+}
+@media (max-width:640px) {
+        .cards_container {
+          grid-template-columns: repeat(auto-fill,140px);
+
+        }
+        .product_card {
+            width: 140px;
+        }
+        .product_card img {
+            width: 140px;
+            height: 140px;
+        }
 }
