@@ -1,0 +1,25 @@
+:root {
+    --white: #ffffff;
+    --black: #000000;
+    --very-light-pinki: #c7c7c7;
+    --text-input-field: #f7f7f7;
+    --hospital-green: #acd982;
+    --celeste: #87CEEB;
+    --md: 14px;
+    --md:16px;
+    --lg:18px;
+}
+.desktop-nemu {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--very-light-pinki);
+    border-radius: 6px;
+}
+.desktop-nemu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.desktop-nemu ul li {
+    text-align: end;
+}
