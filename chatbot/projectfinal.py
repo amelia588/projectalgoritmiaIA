@@ -15,3 +15,8 @@ def reporte():
         print(" PRODUCTOS".center(80, '_'))
         print("|")
         for i in recoger:
+            # PARA CONVERTIR UNA TUPLA EN UNA CADENA
+            print("".join(i))
+            print("".center(80, '*'))
+        print("")
+        cursor.close()
