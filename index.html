@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link href="style.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
-</head>
+   <title>Búsqueda y Selección de Producto</title>
 </head>
 <body>
-    
+    <h1>Búsqueda y Selección de Producto</h1>
+    <form action="buscar_producto.php" method="GET">
+        <label for="producto">Buscar producto:</label>
+        <input type="text" id="producto" name="producto">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <h2>Productos Recomendados</h2>
+    <!-- Aquí podrías mostrar los productos recomendados basados en el historial de compras o navegación del usuario -->
+
 </body>
 </html>
