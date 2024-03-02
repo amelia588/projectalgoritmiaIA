@@ -5,6 +5,7 @@
     --text-input-field: #f7f7f7;
     --hospital-green: #acd982;
     --celeste: #87CEEB;
+    --yellow: #FFFF00;
     --sm:14px;
     --md:16px;
     --lg:18px;
@@ -12,7 +13,28 @@
 body {
     margin: 0;
     font-family: 'Quicksand', sans-serif;
+    background-image: url('https://e0.pxfuel.com/wallpapers/894/854/desktop-wallpaper-animated-html-background-html-animated-abstract.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Para mantener la imagen en su lugar mientras se desplaza */
+    animation: animateBackground 30s linear infinite; /* Animación */
     
+}
+.rainbow-text {
+    color: var(--yellow)
+    
+}
+
+@keyframes animateBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 nav{
     display: flex;
