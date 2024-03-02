@@ -5,8 +5,11 @@ $username = "root";
 $password = "";
 $dbname = "argoritmio";
 
-// Letra inicial a buscar
-$letra_inicial = $_GET['letra']; // Puedes obtener esta letra desde un formulario o de cualquier otra fuente
+// Recibir los datos del formulario
+$nombre = $_POST['nombre'];
+$correo = $_POST['correo'];
+$telefono = $_POST['telefono'];
+$direccion = $_POST['direccion'];
 
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -16,23 +19,14 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// Preparar la consulta SQL para buscar productos por la letra inicial
-$sql = "SELECT * FROM productos WHERE nombre LIKE '$letra_inicial%'";
+// Preparar la consulta SQL para insertar los datos en la tabla clientes
+$sql = "INSERT INTO clientes (nombre, correo, telefono, direccion) VALUES ('$nombre', '$correo', '$telefono', '$direccion')";
 
-// Ejecutar la consulta
-$result = $conn->query($sql);
-
-// Verificar si se encontraron resultados
-if ($result->num_rows > 0) {
-    // Mostrar los resultados
-    echo "<h2>Productos cuyos nombres comienzan con la letra '$letra_inicial':</h2>";
-    echo "<ul>";
-    while($row = $result->fetch_assoc()) {
-        echo "<li>" . $row["nombre"] . "</li>";
-    }
-    echo "</ul>";
+// Ejecutar la consulta y verificar si se realizó correctamente
+if ($conn->query($sql) === TRUE) {
+    echo "Datos ingresados correctamente";
 } else {
-    echo "No se encontraron productos cuyos nombres comiencen con la letra '$letra_inicial'";
+    echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
 // Cerrar la conexión
