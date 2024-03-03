@@ -92,3 +92,41 @@ def iniciar_sesion():
                 consulta_producto()
                 condicion = False
                 while condicion == False:
+                    # upper() para convertir en mayuscula el text ingresado
+                    print("Bot: Ingresa el NOMBRE del producto que va comprar: ")
+                    producto=input("Tú: ").upper()
+                    consulta = "SELECT * FROM productos WHERE nombre_produc =? OR pro2=? OR pro4=? OR pro5=? OR pro6=? OR pro7=?"
+                    parametro = (producto,producto,producto,producto,producto,producto)
+                    cursor.execute(consulta, parametro)
+                    if cursor.fetchall():
+                        print("\n"+"PRODUCTO DISPONIBLE".center(100,'-'))
+                        try:
+                            obtener_precio=f'SELECT precio FROM  precio_productos WHERE nombre="{producto}" '
+                            cursor.execute(obtener_precio)
+                            precio=cursor.fetchone()
+                           
+                            res=""
+                            for i in precio:
+                                res+=str(i)
+                            res=int(res)                            
+                            #print("Bot: Ingresa el PRECIO del producto que seleccionó: ")
+                            #precio=int(input("Tú: "))
+                            print("Bot: Ingresa la CANTIDAD que desea comprar: ")
+                            cantidad=int(input("Tú: "))
+                            precio_fin = res*cantidad
+                            print("Bot: Ingrese su UBICACION para la entrega de productos: ")
+                            ubicacion=input("Tú: ")
+                            consulta1 = "INSERT INTO venta_producto VALUES (?,?,?,?,?,?)"
+                            parametro1 = (usuario, producto, res,cantidad, precio_fin, ubicacion)
+                            cursor.execute(consulta1, parametro1)
+                            print("\n"+"SE REGISTRO SU COMPRA CORRECTAMENTE".center(100,'-'))
+                        except Exception as e:
+                            print("INGRESA LOS TIPO DE DATO CORRECTO".center(100,'-'))
+                            
+                        print("Bot: DESEA SEGUIR COMPRANDO? si/no: ")
+                        pregunta2=input("Tú: ")
+
+                        if pregunta2 == "SI" or pregunta2 == "Si" or pregunta2 == "si" or pregunta2 == "sI":
+                                continue
+                            
+                        else:
