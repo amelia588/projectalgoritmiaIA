@@ -130,3 +130,34 @@ def iniciar_sesion():
                                 continue
                             
                         else:
+                             print("Bot : OK GRACIAS BUEN DIA")
+                            #PONER REPORTE DIRECTO
+                            print("BOLETA".center(100,'-'))
+                            print(f'PRODUCTO: {producto}')
+                            print(f'CANTIDAD {cantidad}')
+                            print(f'PRECIO: {precio}')
+                            print(f'PRECIO FINAL{precio_fin}')
+                            print(f'DIRECCION DE ENTREGA: {ubicacion}')
+                            
+                            print("Bot : OK GRACIAS BUEN DIA")
+                            
+                            
+                            condicion = True
+                            return
+
+                    else:
+                        print("Bot: EL PRODUCTO NO SE ENCONTRO")
+                        print("Bot: DESEA VER LOS PRODUCTOS QUE TENEMOS? : SI/NO ")
+                        consulta =input("Tú: ")
+                        if consulta == "SI" or consulta == "Si" or consulta == "si" or consulta == "sI":
+                            consulta_producto()
+
+                        else:
+                            print("Bot: OK su operacion termino ")
+                            condicion = True
+                            return
+                    #cursor.close()
+
+                ###
+
+            else:
