@@ -53,3 +53,42 @@ def registro_usuario():
                 cursor.execute(consulta, parametros)
                 print("SU REGISTRO FUE UN EXITO".center(100,'-')+"\n")
                 condicionn=True
+# LLAMAMOS AL MEOTOD REGISTRO USUARIO
+# registro_usuario()
+def consulta_producto():
+    with sqlite3.connect("database.db") as conexion:
+        cursor = conexion.cursor()
+        print("\n"+"ESTOS SON LOS PRODUCTOS QUE VENDEMOS".center(100,'-'))
+        consulta = "SELECT * FROM productos"
+        cursor.execute(consulta)
+        recoger = cursor.fetchall()
+        print("")
+        print("".center(80, '*'))
+        print(" PRODUCTOS".center(80, '_'))
+        print("|")
+        for i in recoger:
+
+ # consulta_producto()
+
+
+
+def iniciar_sesion():
+    with sqlite3.connect("database.db") as conexion:
+        cursor = conexion.cursor()
+        condicion0=False
+        
+        while condicion0==False:
+            
+            print("Bot: Ingresa su nombre/usuario: ")
+            usuario=input("Tú: ")
+            print("Bot: Ingresa la contraseña: ")
+            contrasenia=input("Tú: ")
+            consulta = "SELECT * FROM datos_usuarios WHERE usuario=? AND contrasenia=?"
+            parametro = (usuario, contrasenia)
+            cursor.execute(consulta, parametro)
+            if cursor.fetchall():  # si exite el curso
+                print("\n"+"SESION INICIADA CORRECTAMENTE".center(100,'-'))
+                print("AHORA PUEDE COMPRAR EL PRODUCTO".center(100,'-')+"\n")
+                consulta_producto()
+                condicion = False
+                while condicion == False:
