@@ -161,3 +161,100 @@ def iniciar_sesion():
                 ###
 
             else:
+                print("Bot: NOOO USUARIO Y CONTRASEÑA INCORRECTO ")
+                print("Bot: Desea intentar de nuevo INICIAR SESION? si/no ")
+                sesion=input("Tú: ")
+                if sesion=="Si" or sesion=="si" or sesion=="SI" or sesion=="sI" :
+                    continue
+                else:
+                    condicion0=True
+                    print("\n"+"AHORA PROCEDERA A REGISTRARSE".center(100,'-'))
+                print("Bot: Desea registrarse SI/NO :")
+                registro_nuevo=input("Tú: ")
+                if registro_nuevo == "SI" or registro_nuevo == "Si" or registro_nuevo == "si" or registro_nuevo == "sI":
+                    registro_usuario()
+                print("Bot: ¿Quieres seguir INICIADO SESION ? si /no")
+                nuevose=input("Tú: ")
+                if nuevose=="SI" or nuevose=="si" or nuevose=="Si" or nuevose =="sI":
+                    print("\n"+"AHORA VA INICIAR SESION NUEVAMENTE".center(100,'-'))
+                    iniciar_sesion()
+                else:
+                    print("Bot: OK hasta luego ")
+                    condicion0=True
+                    break
+            cursor.close()
+#***********************************************************************************
+print("\n"+"".center(150,'*'))
+print("BIEVENIDO A MI TIENDA".center(150,'-'))
+print("".center(150,'*')+"\n")
+print("Bot: hola mi nombre es Alexa y soy tu asistente virtual ")
+
+def get_respuesta(user_input):
+    split_message = re.split(r'\s|[,:;.?!-_]\s*', user_input.lower())
+    
+    respuesta = revisar_todas_respuestas(split_message)
+    if respuesta=="desea INICIAR SESION Y COMPRAR PRODUCTOS?":
+        registro_usuario()
+    elif respuesta=="hola de nuevo":
+        iniciar_sesion()
+    elif respuesta=="esos son los PRODUCTOS que VENDEMOS , desea comprar?":
+        consulta_producto()
+    elif respuesta=='estos son los reportes':
+        reporte()
+        
+    return respuesta
+
+def mensaje_probabilidad(user_message, recognized_words, single_respuesta=False, required_word=[]):
+    message_certainty = 0
+    has_required_words = True
+
+    for word in user_message:
+        if word in recognized_words:
+            message_certainty +=1
+
+    percentage = float(message_certainty) / float (len(recognized_words))
+    for word in required_word:
+        if word not in user_message:
+            has_required_words = False
+            break
+    if has_required_words or single_respuesta:
+        return int(percentage * 100)
+    else:
+        return 0
+def revisar_todas_respuestas(message):
+        highest_prob = {}
+
+        def respuesta(bot_respuesta, list_of_words, single_respuesta = False, required_words = []):
+            nonlocal highest_prob
+            highest_prob[bot_respuesta] = mensaje_probabilidad(message, list_of_words, single_respuesta, required_words)
+
+        respuesta('hola',['hola', 'saludos','buenas','buenos dias','buenas tardes','buenas noches'], single_respuesta = True)
+        respuesta('estoy bien y tu?', ['como', 'estas', 'va', 'vas', 'sientes'], required_words=['como'])
+        respuesta('estoy de maravillas tu?', ['tal'], single_respuesta = True)
+        respuesta('que bien ! en que puedo servirle? ',['estoy bien', 'bien','genial','tambien','igualmente','igual'],single_respuesta = True)
+        respuesta('estos son los reportes', ['lista','repor','reporte'], single_respuesta=True)        
+        respuesta('desea INICIAR SESION Y COMPRAR PRODUCTOS?',['registrar', 'registro','registrarme','nuevo'], single_respuesta = True)
+        respuesta('esos son los PRODUCTOS que VENDEMOS , desea comprar?', ['ver','vende','productos', 'disponible', 'muestra', 'stock','vendes'], single_respuesta=True)
+       
+        
+        respuesta('hola de nuevo',['si', 'SI','Si','comprar','sesion','iniciar'], single_respuesta = True)
+        respuesta('estoy trabajando como tu asistente',[ 'haces','haciendo','trabajas','dedicas','planes'], single_respuesta = True)
+        respuesta('Estamos ubicados en la calle 23 de la avenida central N° 345', ['ubicados', 'direccion', 'donde', 'ubicacion'], single_respuesta=True)
+        respuesta('Siempre a la orden', ['gracias', 'te lo agradezco', 'thanks','ok','muchas gracias'], single_respuesta=True)
+        
+
+        
+
+        best_match = max(highest_prob, key=highest_prob.get)
+        #print(highest_prob)
+
+        return unknown() if highest_prob[best_match] < 1 else best_match
+
+def unknown():
+    respuesta = ['puedes decirlo de nuevo?', 'No estoy seguro de lo quieres', 'búscalo en google a ver que tal'][random.randrange(3)]
+    return respuesta
+
+while True:
+    
+    print("Bot: " + get_respuesta(input('Tú: ')))
+
